@@ -5,6 +5,19 @@ var largura = 0
 var vidas = 1
 var tempo = 5
 
+var criaMosquitoTempo = 1500
+
+var nivel = window.location.search
+nivel = nivel.replace('?', '')
+
+if(nivel === 'normal'){
+    criaMosquitoTempo = 1500
+}else if(nivel === 'dificil'){
+    criaMosquitoTempo = 1000
+}else if(nivel === 'impossivel'){
+    criaMosquitoTempo = 750
+}
+
 function ajustaTamanhoTela(){
     altura = window.innerHeight
     largura = window.innerWidth
@@ -20,7 +33,7 @@ var cronometro = setInterval(function(){
     if(tempo < 0){
         clearInterval(cronometro)
         clearInterval(criaMosquito)
-        alert('Você venceu!')
+        window.location.href='vitoria.html'
     }else{
         document.getElementById('cronometro').innerHTML = tempo
         tempo -= 1
